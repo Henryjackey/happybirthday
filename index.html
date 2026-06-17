@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff2f7" />
+  <title>小🐷生日快乐</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="stage-bg" aria-hidden="true">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="silk silk-1"></div>
+    <div class="silk silk-2"></div>
+  </div>
+  <canvas id="sparkleCanvas" aria-hidden="true"></canvas>
+  <audio id="audioPlayer" preload="none"></audio>
+
+  <main id="app" class="app">
+    <section class="page cover active" data-page="cover">
+      <div class="cover-card">
+        <p class="topline">A BIRTHDAY CARD</p>
+        <div class="crown">✦</div>
+        <h1>小🐷<span>生日快乐</span></h1>
+        <p class="cover-text">生日快乐呀，新的一岁天天开心，事事顺意~</p>
+        <button class="btn main" data-next>打开</button>
+      </div>
+    </section>
+
+    <section class="page" data-page="song">
+      <div class="lux-card song-layout">
+        <div>
+          <p class="tag">第一份</p>
+          <h2>小寿星生日快乐 🎶</h2>
+          <p class="soft">先放一首生日快乐歌。</p>
+          <button class="btn main audio-btn" data-audio="birthdaySong">播放</button>
+          <div class="seek-wrap"><input class="seekbar" type="range" min="0" max="100" value="0" step="0.1" data-seek="birthdaySong" aria-label="生日快乐歌进度"><div class="seek-time"><span data-time-for="birthdaySong">00:00</span><span data-duration-for="birthdaySong">--:--</span></div></div>
+        </div>
+        <div class="music-box" aria-hidden="true">
+          <div class="record"><span>♪</span></div>
+          <div class="needle"></div>
+          <div class="notes"><i>♪</i><i>♫</i><i>♡</i></div>
+        </div>
+      </div>
+      <div class="pager"><button data-prev>‹</button><button data-next>›</button></div>
+    </section>
+
+    <section class="page" data-page="wish">
+      <div class="lux-card center">
+        <p class="tag">第二份</p>
+        <h2>吹蜡烛啦</h2>
+        <p class="soft">闭上眼睛，许个愿吧~</p>
+        <div class="cake-scene">
+          <button class="cake" id="cake" aria-label="吹蜡烛">
+            <span class="flame"></span><span class="candle"></span>
+            <span class="cream"></span><span class="layer top"></span><span class="layer mid"></span><span class="plate"></span>
+          </button>
+          <button class="btn ghost" id="cutCake">切蛋糕</button>
+        </div>
+        <p class="result" id="wishText"></p>
+      </div>
+      <div class="pager"><button data-prev>‹</button><button data-next>›</button></div>
+    </section>
+
+    <section class="page" data-page="voice-one">
+      <div class="lux-card recorder-layout">
+        <div>
+          <p class="tag">第三份</p>
+          <h2>给你留了一段声音</h2>
+          <p class="soft">哈哈哈哈，我是养朱盘，不是杀朱盘。</p>
+        </div>
+        <div class="recorder">
+          <div class="reel"><span></span><span></span></div>
+          <div class="wave" data-wave></div>
+          <button class="btn main audio-btn" data-audio="voiceOne">播放 / 暂停</button>
+          <div class="seek-wrap"><input class="seekbar" type="range" min="0" max="100" value="0" step="0.1" data-seek="voiceOne" aria-label="第一段语音进度"><div class="seek-time"><span data-time-for="voiceOne">00:00</span><span data-duration-for="voiceOne">--:--</span></div></div>
+          <div class="timebar"><span>第一段语音</span></div>
+        </div>
+      </div>
+      <div class="pager"><button data-prev>‹</button><button data-next>›</button></div>
+    </section>
+
+    <section class="page" data-page="memories">
+      <div class="lux-card">
+        <p class="tag">顺手写下来的几件小事</p>
+        <h2>因为是你，所以值得</h2>
+        <div class="memory-grid">
+          <article><b>欧洲那几天</b><p>我每天跑到没电，回消息有时候很慢。你没有催，只说让我先好好玩。那句话很轻，但我记了很久。</p></article>
+          <article><b>那次我问得有点突然</b><p>我有一点点在意，就直接问了你。你没有敷衍，也没有让我自己乱猜，而是认真解释了。坦诚真的很让人安心。</p></article>
+          <article><b>“你不会是杀猪盘吧？”</b><p>我昨天看到这句话，真的好无语。但是知道你是在开玩笑。我还是想认真回答一次：不是套路！是我真的觉得你值得被这样对待。</p></article>
+          <article><b>我也在学分寸</b><p>我很想真诚，又怕太满、太急、太用力。所以我想靠近你，但不是逼近你；想对你更好~但不想让你感到压迫和压力。</p></article>
+        </div>
+      </div>
+      <div class="pager"><button data-prev>‹</button><button data-next>›</button></div>
+    </section>
+
+    <section class="page" data-page="party">
+      <div class="lux-card party-card">
+        <p class="tag">Happy Time</p>
+        <h2>生日快乐时间</h2>
+        <p class="soft">小寿星生日快乐，今天必须热闹一下。</p>
+        <div class="party-stage">
+          <div class="balloons"><i></i><i></i><i></i><i></i></div>
+          <div class="badge">小🐷生日快乐</div>
+          <button class="btn main audio-btn" data-audio="haidilao">播放</button>
+          <div class="seek-wrap party-seek"><input class="seekbar" type="range" min="0" max="100" value="0" step="0.1" data-seek="haidilao" aria-label="海底捞生日快乐歌进度"><div class="seek-time"><span data-time-for="haidilao">00:00</span><span data-duration-for="haidilao">--:--</span></div></div>
+          <button class="btn ghost" id="confettiBtn">撒彩带</button>
+        </div>
+      </div>
+      <div class="pager"><button data-prev>‹</button><button data-next>›</button></div>
+    </section>
+
+    <section class="page" data-page="yueding">
+      <div class="lux-card center yueding">
+        <p class="tag">最后唱一点</p>
+        <h2>《约定》</h2>
+        <p class="soft">“远处的钟声回荡在雨里。”</p>
+        <div class="moon-card">
+          <span class="moon">☾</span>
+          <button class="btn main audio-btn" data-audio="yueding">播放清唱</button>
+          <div class="seek-wrap moon-seek"><input class="seekbar" type="range" min="0" max="100" value="0" step="0.1" data-seek="yueding" aria-label="约定清唱进度"><div class="seek-time"><span data-time-for="yueding">00:00</span><span data-duration-for="yueding">--:--</span></div></div>
+        </div>
+      </div>
+      <div class="pager"><button data-prev>‹</button><button data-next>›</button></div>
+    </section>
+
+    <section class="page" data-page="witch">
+      <div class="lux-card center witch">
+        <p class="tag">女巫“毒”药</p>
+        <h2>选一瓶毒药</h2>
+        <p class="soft">听说女巫今天只卖三瓶。点中那一瓶，会掉出一张小卡片。</p>
+        <div class="potions" id="potions">
+          <button class="potion" data-potion="rose"><span>🧪</span><b>粉色药水</b><em>看起来很甜</em></button>
+          <button class="potion" data-potion="star"><span>🔮</span><b>星星药水</b><em>有点可疑</em></button>
+          <button class="potion" data-potion="pig"><span>🐷</span><b>小猪药水</b><em>禁止偷笑</em></button>
+        </div>
+        <p class="result" id="potionText">女巫正在等你乱选。</p>
+        <div class="drop-card" id="dropCard" aria-live="polite">
+          <span class="drop-star">✦</span>
+          <b>中毒提示</b>
+          <p>去 QQ 聊天框发个 <strong>1</strong></p>
+        </div>
+      </div>
+      <div class="pager"><button data-prev>‹</button><button data-next>›</button></div>
+    </section>
+
+
+    <section class="page" data-page="final">
+      <div class="lux-card center final-card">
+        <p class="tag">最后</p>
+        <h2>生日快乐，小🐷</h2>
+        <p>愿你新的一岁，被看见，被珍惜，被温柔又坚定地偏心。</p>
+        <p>小寿星，生日快乐。</p>
+        <button class="btn main" id="fireworkBtn">收下烟花</button>
+      </div>
+      <div class="pager"><button data-prev>‹</button><button data-next>↺</button></div>
+    </section>
+  </main>
+
+  <div class="progress" id="progress"></div>
+  <div class="toast" id="toast"></div>
+  <div class="fx" id="fx"></div>
+  <script src="js/content.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
