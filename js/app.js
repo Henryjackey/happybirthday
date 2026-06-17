@@ -16,8 +16,17 @@ function prev(){ showPage(pageIndex-1); }
 
 document.addEventListener('click', e => { if(e.target.closest('[data-next]')) next(); if(e.target.closest('[data-prev]')) prev(); });
 let startX = 0;
-document.addEventListener('touchstart', e => startX = e.changedTouches[0].clientX, {passive:true});
-document.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - startX; if(Math.abs(dx)>70) dx < 0 ? next() : prev(); }, {passive:true});
+let startY = 0;
+document.addEventListener('touchstart', e => {
+  startX = e.changedTouches[0].clientX;
+  startY = e.changedTouches[0].clientY;
+}, {passive:true});
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - startX;
+  const dy = e.changedTouches[0].clientY - startY;
+  // Only turn page on a clear horizontal swipe. Vertical scrolling should not flip pages.
+  if(Math.abs(dx) > 78 && Math.abs(dx) > Math.abs(dy) * 1.35) dx < 0 ? next() : prev();
+}, {passive:true});
 
 document.querySelectorAll('[data-audio]').forEach(btn => {
   btn.addEventListener('click', () => {
