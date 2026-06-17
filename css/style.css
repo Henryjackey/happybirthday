@@ -321,3 +321,52 @@ body {
   .party-stage { min-height: 220px; }
   .badge { margin-top: 58px; }
 }
+
+/* ===== v11 fix: memory page should not be covered by bottom arrows ===== */
+@media (max-width: 760px) {
+  .page[data-page="memories"] {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 156px);
+  }
+
+  .page[data-page="memories"] .lux-card {
+    margin-bottom: 28px;
+  }
+
+  .page[data-page="memories"] .memory-grid {
+    padding-bottom: 14px;
+  }
+
+  .page[data-page="memories"] .memory-grid article {
+    padding: 16px 15px;
+  }
+
+  .page[data-page="memories"] .memory-grid article:last-child {
+    margin-bottom: 26px;
+  }
+}
+
+@media (max-height: 700px) and (max-width: 760px) {
+  .page[data-page="memories"] {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 150px);
+  }
+
+  .page[data-page="memories"] .lux-card h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+
+  .page[data-page="memories"] .memory-grid {
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .page[data-page="memories"] .memory-grid b {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .page[data-page="memories"] .memory-grid p {
+    font-size: 13.4px;
+    line-height: 1.58;
+  }
+}
